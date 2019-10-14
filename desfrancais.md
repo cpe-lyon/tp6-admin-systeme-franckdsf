@@ -32,7 +32,7 @@ J'ai fait la commande `mkfs.ext4 /dev/sdb1` pour la première partition J'ai fai
 
 **5. Pourquoi la commande df -T, qui affiche le type de système de fichier des partitions, ne fonctionne-telle pas sur notre disque ?**
 
-La commande df -T n'affiche pas le disque sdb car il n'est pas encore monté
+La commande `df -T` n'affiche pas le disque sdb car il n'est pas encore monté
 
 **6. Faites en sorte que les deux partitions créées soient montées automatiquement au démarrage de la machine, respectivement dans les points de montage /data et /win (vous pourrez vous passer des UUID en raison de l’impossibilité d’effectuer des copier-coller)**
 
@@ -115,9 +115,13 @@ On peut renseigner la taille d’un volume logique soit de manière absolue avec
 A ce stade, l’utilité de LVM peut paraître limitée. Il trouve tout son intérêt quand on veut par exemple agrandir une partition à l’aide d’un nouveau disque.
 ```
 
-
+`fdisk /dev/mapper/volume1/1vData`
+on créer une partition de 2gb, puis on la formate.
+`mkfs.ext4 /dev/mapper/volume1-1vData`
 
 **7. Eteignez la VM pour ajouter un second disque (peu importe la taille pour cet exercice). Redémarrez la VM, vérifiez que le disque est bien présent. Puis, répétez les questions 2 et 3 sur ce nouveau disque.**
+
+
 
 **8. Utilisez la commande vgextend <nom_vg> <nom_pv> pour ajouter le nouveau disque au groupe de volumes**
 
