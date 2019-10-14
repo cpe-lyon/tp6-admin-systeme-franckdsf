@@ -115,9 +115,18 @@ On peut renseigner la taille d’un volume logique soit de manière absolue avec
 A ce stade, l’utilité de LVM peut paraître limitée. Il trouve tout son intérêt quand on veut par exemple agrandir une partition à l’aide d’un nouveau disque.
 ```
 
-`fdisk /dev/mapper/volume1/1vData`
-on créer une partition de 2gb, puis on la formate.
-`mkfs.ext4 /dev/mapper/volume1-1vData`
+`fdisk /dev/mapper/volume1/1vData`<br>
+on créer une partition de 2gb, puis on la formate.<br>
+`mkfs.ext4 /dev/mapper/volume1-1vData`<br>
+
+`nano /etc/fstab`<br>
+
+on ajoute :
+```
+#device                         mountpoint      fstype    options    dump   fsck
+/dev/mapper/volume1-1vData      /data            ext4     defaults     0       0
+```
+
 
 **7. Eteignez la VM pour ajouter un second disque (peu importe la taille pour cet exercice). Redémarrez la VM, vérifiez que le disque est bien présent. Puis, répétez les questions 2 et 3 sur ce nouveau disque.**
 
