@@ -60,7 +60,10 @@ Pas besoin de monter car les dd sont montés automatiquement au redemarrage. Une
 
 **1. On va réutiliser le disque de 5 Gio de l’exercice précédent. Commencez par démonter les systèmes de fichiers montés dans /data et /win s’ils sont encore montés, et supprimez les lignes correspondantes du fichier /etc/fstab**
 
-**2. Supprimez les deux partitions du disque, et créez une patition unique de type LVM**
+`umount /data`<br>
+`umount /win`
+
+**2. Supprimez les deux partitions du disque, et créez une partition unique de type LVM**
 
 ```
 La création d’une partition LVM n’est pas indispensable, mais vivement recommandée quand
@@ -69,7 +72,11 @@ gestion de disques (qui ne reconnaissent pas forcément le format LVM) qu’il y
 ce disque.
 ```
 
-`Attention à ne pas supprimer la partition système !`
+supprimer une partition : 
+
+`fdisk /dev/sdb`<br>
+appuyer sur `d` pour supprimer les partitions.
+enregistrer avec `w`
 
 **3. A l’aide de la commande pvcreate, créez un volume physique LVM. Validez qu’il est bien créé, en utilisant la commande pvdisplay.**
 
@@ -77,6 +84,8 @@ ce disque.
 Toutes les commandes concernant les volumes physiques commencent par pv. Celles concernant
 les groupes de volumes commencent par vg, et celles concernant les volumes logiques par lv.
 ```
+
+
 
 **4. A l’aide de la commande vgcreate, créez un groupe de volumes, qui pour l’instant ne contiendra que le volume physique créé à l’étape précédente. Vérifiez à l’aide de la commande vgdisplay.**
 
