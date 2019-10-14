@@ -85,7 +85,11 @@ Toutes les commandes concernant les volumes physiques commencent par pv. Celles 
 les groupes de volumes commencent par vg, et celles concernant les volumes logiques par lv.
 ```
 
-
+- faire `fdisk /dev/sdb`<br>
+- appuyer sur `n`<br>
+- laisser a default le début de partition<br>
+- laisser a default pour la fin de partition<br>
+- appuyer sur `t` et choisir `8E` (Linux LVM)<br>
 
 **4. A l’aide de la commande vgcreate, créez un groupe de volumes, qui pour l’instant ne contiendra que le volume physique créé à l’étape précédente. Vérifiez à l’aide de la commande vgdisplay.**
 
