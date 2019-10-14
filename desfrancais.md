@@ -4,15 +4,45 @@
 
 **1. Dans l’interface de configuration de votre VM, créez un second disque dur, de 5 Go dynamiquement alloués ; puis démarrez la VM**
 
+J'ai fait clic droit configuration -> stockage -> créer un nouveau disque dur virtuel
+
 **2. Vérifiez que ce nouveau disque dur est bien détecté par le système**
+
+il est bien detecté : fdisk -l
 
 **3. Partitionnez ce disque en utilisant fdisk : créez une première partition de 2 Go de type Linux (n°83), et une seconde partition de 3 Go en NTFS (n°7)**
 
+premiere partition : <br>
+- fdisk /dev/sdb<br>
+- appuyer sur `n`<br>
+- laisser a default le début de partition<br>
+- entrer +2g pour la fin de partition<br>
+- appuyer sur `n`<br>
+- laisser a default le début de partition<br>
+- entrer +3 pour la fin de partition (ou laisser le faire automatiquement). <br>
+- appuyer sur `t`<br>
+- choisir la deuxieme partition (2)<br>
+- appuyer sur 7 (format NTFS)<br>
+- appuyer sur `p` pour afficher les partitions.<br>
+- appuyer sur `w` pour quitter et sync.
+
 **4. A ce stade, les partitions ont été créées, mais elles n’ont pas été formatées avec leur système de fichiers. A l’aide de la commande mkfs, formatez vos deux partitions ( pensez à consulter le manuel !)**
+
+J'ai fait la commande `mkfs.ext4 /dev/sdb1` pour la première partition J'ai fait la commande `mkfs.ntfs /dev/sdb2` pour la deuxième partition
 
 **5. Pourquoi la commande df -T, qui affiche le type de système de fichier des partitions, ne fonctionne-telle pas sur notre disque ?**
 
+`nano /etc/fstab`
+on ajoute :
+```
+#device        mountpoint             fstype    options    dump   fsck
+/dev/sdb1      /data                   ext4     defaults     0       0
+/dev/sdb2      /win                    ext4     defaults     0       0
+```
+
 **6. Faites en sorte que les deux partitions créées soient montées automatiquement au démarrage de la machine, respectivement dans les points de montage /data et /win (vous pourrez vous passer des UUID en raison de l’impossibilité d’effectuer des copier-coller)**
+
+
 
 **7. Utilisez la commande mount puis redémarrez votre VM pour valider la configuration**
 
