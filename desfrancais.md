@@ -32,23 +32,29 @@ J'ai fait la commande `mkfs.ext4 /dev/sdb1` pour la première partition J'ai fai
 
 **5. Pourquoi la commande df -T, qui affiche le type de système de fichier des partitions, ne fonctionne-telle pas sur notre disque ?**
 
+La commande df -T n'affiche pas le disque sdb car il n'est pas encore monté
+
+**6. Faites en sorte que les deux partitions créées soient montées automatiquement au démarrage de la machine, respectivement dans les points de montage /data et /win (vous pourrez vous passer des UUID en raison de l’impossibilité d’effectuer des copier-coller)**
+
 `nano /etc/fstab`
 on ajoute :
 ```
 #device        mountpoint             fstype    options    dump   fsck
 /dev/sdb1      /data                   ext4     defaults     0       0
-/dev/sdb2      /win                    ext4     defaults     0       0
+/dev/sdb2      /win                    ntfs     defaults     0       0
 ```
-
-**6. Faites en sorte que les deux partitions créées soient montées automatiquement au démarrage de la machine, respectivement dans les points de montage /data et /win (vous pourrez vous passer des UUID en raison de l’impossibilité d’effectuer des copier-coller)**
-
-
 
 **7. Utilisez la commande mount puis redémarrez votre VM pour valider la configuration**
 
+Pas besoin de monter car les dd sont montés automatiquement au redemarrage. Une fois redemarrée, la VM affiche bien les partitions montées.
+
 **8. Montez votre clé USB dans la VM**
 
+
+
 **9. Créez un dossier partagé entre votre VM et votre système hôte (rem. il peut être nécessaire d’installer les Additions invité de VirtualBox**
+
+
 
 ## Exercice 2. Partitionnement LVM
 
