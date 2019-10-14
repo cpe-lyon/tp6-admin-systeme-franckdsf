@@ -91,17 +91,23 @@ les groupes de volumes commencent par vg, et celles concernant les volumes logiq
 - laisser a default pour la fin de partition<br>
 - appuyer sur `t` et choisir `8E` (Linux LVM)<br>
 
+`pvcreate /dev/sdb1`
+
 **4. A l’aide de la commande vgcreate, créez un groupe de volumes, qui pour l’instant ne contiendra que le volume physique créé à l’étape précédente. Vérifiez à l’aide de la commande vgdisplay.**
 
 ```
 Par convention, on nomme généralement les groupes de volumes vgxx (où xx représente l’indice du groupe de volume, en commençant par 00, puis 01...)
 ```
 
+`vgcreate volume1 /dev/sdb1`
+
 **5. Créez un volume logique appelé lvData occupant l’intégralité de l’espace disque disponible.**
 
 ```
 On peut renseigner la taille d’un volume logique soit de manière absolue avec l’option -L (par exemple -L 10G pour créer un volume de 10 Gio), soit de manière relative avec l’option -l : -l 60%VG pour utiliser 60% de l’espace total du groupe de volumes, ou encore -l 100%FREE pour utiliser la totalité de l’espace libre.
 ```
+
+
 
 **6. Dans ce volume logique, créez une partition que vous formaterez en ext4, puis procédez comme dans l’exercice 1 pour qu’elle soit montée automatiquement, au démarrage de la machine, dans /data.**
 
