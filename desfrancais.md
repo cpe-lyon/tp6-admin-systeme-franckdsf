@@ -130,9 +130,11 @@ on ajoute :
 
 **7. Eteignez la VM pour ajouter un second disque (peu importe la taille pour cet exercice). Redémarrez la VM, vérifiez que le disque est bien présent. Puis, répétez les questions 2 et 3 sur ce nouveau disque.**
 
-
+Fait.
 
 **8. Utilisez la commande vgextend <nom_vg> <nom_pv> pour ajouter le nouveau disque au groupe de volumes**
+
+j'ai fait la commande  `vgextend volume1 /dev/sdc1` 
 
 **9. Utilisez la commande lvresize (ou lvextend) pour agrandir le volume logique. Enfin, il ne faut pas oublier de redimensionner le système de fichiers à l’aide de la commande resize2fs.**
 ```Il est possible d’aller beaucoup plus loin avec LVM, par exemple en créant des volumes par
@@ -140,6 +142,7 @@ bandes (l’équivalent du RAID 0) ou du mirroring (RAID 1). Le but de cet exerc
 présenter les fonctionnalités de base.
 ```
 
+commande :  `lvextend -l 100%FREE /dev/volume1/1vData` puis `resize2fs /dev/volume1/1vData` 
 ## Exercice 3. Exécution de commandes en différé : at et cron
 
 **1. Programmez une tâche qui affiche un rappel pour la réunion qui aura lieu dans 3 minutes. Vérifiez
